@@ -4,18 +4,7 @@ library(Matrix)
 library(xgboost)
 
 ConsR <- function(RH,tC) {
-  # argument : tRHTC is a concathenated vector of hourly RH for the 7 previous days
-  # followed by tC hourly for the 7 previous days
-  # RH  =  Relative Humidity
-  # tC  =  temperature *C
-  # value : list, [[1]]=tcons and [[2]] consmc.
-  # - tcons is the number of hours of the periods of the day with 
-  # consecutive hours with humidity above 90%, 
-  # starting fom noon to noon the next day
-  # - consmc is the mean temperature for each periods
-  # Usage : To get each assign out1 = ConsR(c(tRH, tC)) then out1$tcons and out1$consmc
-  # This outputs tcons and consmc as a list.
-  # To get each assign out1 = ConsR(tRH, tC) then out1$tcons and out1$consmc
+
   consmc <- c()
   first <- TRUE
   tcons <- 0
