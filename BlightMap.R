@@ -1,7 +1,7 @@
 ##############################################################################
 # title         : 01 - SimcCast_Blight_Units.R;
 # purpose       : recreate SimCast model as implemented by:
-#                 Grünwald, N. J., Montes, G. R., Saldana, H. L., Covarrubias,
+#                 GrÃ¼nwald, N. J., Montes, G. R., Saldana, H. L., Covarrubias,
 #                 O. A. R., & Fry, W. E. (2002).
 #                 Potato Late Blight Management in the Toluca Valley: Field
 #                 Validation of SimCast Modified for
