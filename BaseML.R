@@ -11,8 +11,11 @@ datatable <- read.csv("Variables_API1.1 - Tiempos.csv",header=T)
 
 diseaseMLmodel <- function(datatable, twindow=1) {
   
+  #List of possible answers for the desired disease
+  disNames <- c("Tizón", "Tizón tardío", "Phytophthora", "Phytophthora infestans")
+  
   #Obtain the relevant variables and prepare the table
-  extrVar <- c("UP1","UA.u.2","UA.u.3","P.n.s.1","P.n.s.2","P.n.apl.2","P.n.oe.1","P.n.oe.2")
+  extrVar <- c("UP1","UA.u.2","UA.u.3","P.n.s.1","P.n.s.2","P.n.apl.2","P.n.oe.1","P.n.oe.2","P.n.oe.9")
   varPos <- lapply(extrVar,FUN=function(x) { which(datatable[,1] == x) })
   varPos <- lapply(varPos, function(x) { x[1] })
   if(length(is.na(varPos)) == 0) {
@@ -24,6 +27,12 @@ diseaseMLmodel <- function(datatable, twindow=1) {
   tableML <- as.data.frame(t(as.matrix(tableMLt)))
   tableML$time <- index(rownames(tableML))
   tableML$density <- tableML$P.n.s.1/tableML$UA.u.3
+  
+  #Keep only the data of disease appearances of the disease names in disNames
+  tableML$P.n.oe.1 <- tableML$P.n.oe.1*(tableML$P.n.oe.9 %in% disNames)
+  tableML$P.n.oe.2 <- tableML$P.n.oe.2*(tableML$P.n.oe.9 %in% disNames)
+  
+  #Set the time order of the table
   setorder(tableML, "time")
   
   #Generate the training table considering the effects of the variables in n-2 -> output in n-1
